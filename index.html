@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/style.css">
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<style>
+			
+.bar{
+	background-color:#5c9bb7;
+
+	background-image:-webkit-linear-gradient(top, #5c9bb7, #5392ad);
+	background-image:-moz-linear-gradient(top, #5c9bb7, #5392ad);
+	background-image:linear-gradient(top, #5c9bb7, #5392ad);
+
+	box-shadow: 0 1px 1px #ccc;
+	border-radius: 2px;
+	width: 950px;
+	padding: 10px;
+	margin: 10px;
+	position:relative;
+	text-align:right;
+	line-height: 1;
+}
+#mainswwww{
+	margin-top: -40px;
+}
+#mainswwww .list{
+	margin-left:10px;
+}
+.bar a{
+	background:#4987a1 center center no-repeat;
+	width:32px;
+	height:32px;
+	display:inline-block;
+	text-decoration:none !important;
+	margin-right:5px;
+	border-radius:2px;
+	cursor:pointer;
+}
+
+.bar a.active{
+	background-color:#c14694;
+}
+
+.bar a.list-icon{
+	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkYzNkFCQ0ZBMTBCRTExRTM5NDk4RDFEM0E5RkQ1NEZCIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkYzNkFCQ0ZCMTBCRTExRTM5NDk4RDFEM0E5RkQ1NEZCIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjM2QUJDRjgxMEJFMTFFMzk0OThEMUQzQTlGRDU0RkIiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjM2QUJDRjkxMEJFMTFFMzk0OThEMUQzQTlGRDU0RkIiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7h1bLqAAAAWUlEQVR42mL8////BwYGBn4GCACxBRlIAIxAA/4jaXoPEkMyjJ+A/g9MDJQBRhYg8RFqMwg8RJIUINYLFDmBUi+ADQAF1n8ofk9yIAy6WPg4GgtDMRYAAgwAdLYwLAoIwPgAAAAASUVORK5CYII=);
+}
+
+.bar a.grid-icon{
+	background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjBEQkMyQzE0MTBCRjExRTNBMDlGRTYyOTlBNDdCN0I4IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjBEQkMyQzE1MTBCRjExRTNBMDlGRTYyOTlBNDdCN0I4Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MERCQzJDMTIxMEJGMTFFM0EwOUZFNjI5OUE0N0I3QjgiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MERCQzJDMTMxMEJGMTFFM0EwOUZFNjI5OUE0N0I3QjgiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4MjPshAAAAXklEQVR42mL4////h/8I8B6IGaCYKHFGEMnAwCDIAAHvgZgRyiZKnImBQsACxB+hNoDAQyQ5osQZIT4gH1DsBZABH6AB8x/JaQzEig++WPiII7Rxio/GwmCIBYAAAwAwVIzMp1R0aQAAAABJRU5ErkJggg==);
+}
+
+.bar input{
+	background:#fff no-repeat 13px 13px;
+
+	border: none;
+	width: 100%;
+	line-height: 19px;
+	padding: 11px 0;
+
+	border-radius: 2px;
+	box-shadow: 0 2px 8px #c4c4c4 inset;
+	text-align: left;
+	font-size: 14px;
+	font-family: inherit;
+	color: #738289;
+	font-weight: bold;
+	outline: none;
+	text-indent: 40px;
+}
+.shapca2{
+	height:50px;
+	//float:left;
+}
+.serv > div {
+height:90px;
+width:750px;
+//float:left;
+}
+.serv > p {
+//float:left;
+}
+
+form#price{
+	background-color:orange;
+//	#61a1bc;
+	border-radius: 2px;
+	box-shadow: 0 1px 1px #ccc;
+	width: 400px;
+	padding: 35px 60px;
+	margin: 20px 400px;
+}
+#esfse{
+	width:1000px;
+	height:700px;
+}
+main{
+height: 2500px;
+}
+form#price h1{
+	color:#fff;
+	font-size:64px;
+	font-family:'Cookie', cursive;
+	font-weight: normal;
+	line-height:1;
+	text-shadow:0 3px 0 rgba(0,0,0,0.1);
+}
+
+form#price ul{
+	list-style:none;
+	color:#fff;
+	font-size:20px;
+	font-weight:bold;
+	text-align: left;
+	margin:20px 0 15px;
+}
+
+form#price ul li{
+	padding:20px 30px;
+	background-color: purple; //#e35885;
+	margin-bottom:8px;
+	box-shadow:0 1px 1px rgba(0,0,0,0.1);
+	cursor:pointer;
+}
+
+form#price ul li span{
+	float:right;
+}
+
+form#price ul li.active{
+	background-color:#8ec16d;
+}
+
+div.total{
+	border-top:1px solid rgba(255,255,255,0.5);
+	padding:15px 30px;
+	font-size:20px;
+	font-weight:bold;
+	text-align: left;
+	color:#fff;
+}
+
+div.total span{
+	float:right;
+}
+		</style>
+    </head>
+    <body>
+		<header>
+				<div class="hed-color">
+					<div class="sentr sentr_std">
+						<div class="contacts">
+							<div class="wear">
+								<span class="under-dot">Краматорск</span><span>-></span><span class="under-sol">ул.Шкадинова, 34</span>
+							</div>
+							<div>
+								<span class="phonn"></span><span>(095) 222-55-55, 444-55-55</span>
+							</div>
+						</div>
+						<ul class="nav">
+							<li><a href="#">Как купить</a></li>
+							<li><a href="#">Гарантия</a></li>
+							<li><a href="#">Доставка</a></li>
+							<li><a href="#">Мой арсенал</a></li>
+							<li class="vkk"><a href="#"></a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="hed-to-lvl sentr sentr_std">
+					<div class="logo">
+						<div class="log"></div>
+						<div class="slogan">Мы работаем на ваш талант!</div>
+					</div>
+					<form class="serch" method="post"  enctype="multipart/form-data" action="serch.php">
+						<input type="text" placeholder="Поиск товаров">
+						<button type="submit">...</button>
+					</form>
+					<div class="basket"><a href=""><img src="./img/brek.png"></a></div>
+				</div>
+				<nav>
+					<ul class="sentr sentr_std">
+						<li class="activ"><a href="#"></a>Акции</li>
+						<li><a href="#">Музыкальные инструменты</a></li>
+						<li><a href="#">DJ</a></li>
+						<li><a href="#">Шоу-техника</a></li>
+						<li><a href="#">Студия</a></li>
+						<li><a href="#">Звук</a></li>
+						<li><a href="#">Свет</a></li>
+						<li><a href="#">Коммутация</a></li>
+						<li><a href="#">Стойки</a></li>
+					</ul>
+				</nav>	
+		</header>
+		<main>
+			<section class="starting">
+				<div>
+				</div>
+			</section>
+			<section class="instruments">
+				<div class="sentr sentr_std">
+					<h2 class="zag1">Распродажа инструментов</h2>
+					<!--<ul class="menu1 clearfix">
+						<li class="activ"><a href="#">Инструменты</a></li>
+						<li><a href="#">Свет</a></li>
+						<li><a href="#">Звук</a></li>
+						<li><a href="#">Уценка</a></li>
+					</ul>-->
+					<form id="mainserch" v-cloak>
+						<div class="bar">
+							<!-- Создает связь мужду моделью searchString model и текстовым полем -->
+							<input type="text" v-model="searchString" placeholder="Введите название товара" />
+						</div>
+						<ul class="window-shop clearfix">
+							<li v-for="article in filteredArticles">
+								<div class="shop-img"><img v-bind:src="article.image"></div>
+								<p class="hh"><a href="#">{{article.title}}</a></p>
+								<p class="descript-shop">{{article.descript}}</p>
+								<span class="prise"></span><span class="new-prise">{{article.prise}}</span>
+							</li>
+					</ul>
+					</form>
+					<div class="sentr lickk">
+						<ul>
+							<li  class="lower_ref"><a href="#">ВСЕ ПРРЕДЛОЖЕНИЯ</a></li>
+							<li class="lower_ref"><a href="#">ПОДПИСАТЬСЯ НА РАСПРОДАЖИ</a></li>
+						</ul>	
+					</div>
+				</div>
+			</section>
+			<section class="services">
+				<div class="sentr sentr_std clearfix">
+					<p class="hh2">Услуги</p>
+					<form id="mainswwww" v-cloak>
+						<div class="bar">
+							<a class="list-icon" v-bind:class="{ 'active': layout == 'list'}" v-on:click="layout = 'list'"></a>
+							<a class="grid-icon" v-bind:class="{ 'active': layout == 'grid'}" v-on:click="layout = 'grid'"></a>
+						</div>
+						<div v-if="layout == 'grid'" class="serv">	
+							<div v-for="a in articles">
+								<div class="shapca2">
+									<img class="ferst-img" v-bind:src="a.image.large"><a href="#" class="link">{{a.title}}</a>
+								</div>
+								<p>{{a.descript}}</p>
+							</div>
+						</div>
+						<ul v-if="layout == 'list'" class="list">
+							<!-- Компактный вариант с фото и подписями -->
+							<li v-for="a in articles">
+								<a v-bind:href="a.url" target="_blank"><img v-bind:src="a.image.small" /></a>
+								<p>{{a.title}}</p>
+							</li>
+						</ul>
+					</form>
+					<!--<div v-if="layout == 'grid'" class="serv">
+						<div v-for="a in articles">
+							<img class="ferst-img" v-bind:src="a.image.large"><a href="#" class="link">{{a.title}}</a>
+						</div>
+						<p>{{a.descript}}</p>
+					</div>
+					<div class="serv">
+						<div>
+							<img src="./img/serv2.png"><a href="#" class="link">Установка и настройка</a>
+						</div>
+						<p>Цикл, в том числе, выстраивает пласт. Как мы уже знаем, форшлаг регрессийно образует звукорядный хорус.</p>
+					</div>
+					<div class="serv">
+						<div>
+							<img src="./img/serv3.png"><a href="#" class="link">Продажа в кредит</a>
+						</div>
+						<p>Цикл, в том числе, выстраивает пласт. Как мы уже знаем, форшлаг регрессийно образует звукорядный хорус.</p>
+					</div>
+					<div class="serv">
+						<div>
+							<img src="./img/serv4.png"><a href="#" class="link">Ремонт и обслуживание</a>
+						</div>
+						<p>Цикл, в том числе, выстраивает пласт. Как мы уже знаем, форшлаг регрессийно образует звукорядный хорус.</p>
+					</div>
+					<div class="serv">
+						<div>
+							<img src="./img/serv5.png"><a href="#" class="link">Обмен без проблем</a>
+						</div>
+						<p>Группа Компаний LTM осуществляет проектирование и монтаж всего спектра поставляемого оборудования на любых типах объектов. </p>
+					</div>
+					<div class="serv">
+						<div>
+							<img src="./img/serv6.png"><a href="#" class="link">Подарочные карты</a>
+						</div>
+						<p>Цикл, в том числе, выстраивает пласт. Как мы уже знаем, форшлаг регрессийно образует звукорядный хорус.</p>
+					</div>-->
+				</div>
+			</section>
+			<section id="esfse">
+			<form id="price" v-cloak>
+				<h1>Прайс-лист</h1>
+
+				<ul>
+					<!-- Цикл проходит по массиву услуг и устанавливает или удаляет класс "active" -->
+					<li v-for="service in services" v-on:click="toggleActive(service)" v-bind:class="{ 'active': service.active}">
+						<!-- Показывает название и цену для каждого вложенного элемента.-->
+						{{service.name}} <span>{{service.price | currency}}</span>
+					</li>
+				</ul>
+
+				<div class="total">
+					<!-- Высчитывает итоговую сумму -->
+					Итого: <span>{{total() | currency}}</span>
+				</div>
+			</form>
+			</section>
+		</main>
+		<footer>
+			<div class="sentr">
+				<p></p>
+				<ul class="nav line3">
+					<li class="cc">© 2018 Музыкальный арсенал</li>
+					<li><a href="#">Правила использования сайта</a></li>
+					<li><a href="#">Политика конфиденциальности</a></li>
+				</ul>
+				<div class="contacts">
+				
+				</div>
+				<nav>
+					<ul>
+						<li><a>О компании</a></li>
+						<li><a>Наша история</a></li>
+						<li><a>Благодарности</a></li>
+						<li><a>Партнерам</a></li>
+						<li><a>Магазины</a></li>
+						<li><a>Контакты</a></li>
+					</ul>
+					<ul>
+						<li><a>Эндорсеры</a></li>
+						<li><a>Коллектив</a></li>
+						<li><a>Вакансии</a></li>
+						<li><a>Новости</a></li>
+						<li><a>Обзоры</a></li>
+					</ul>
+					<ul>
+						<li><a>Акциии</a></li>
+						<li><a>Распродажи</a></li>
+						<li><a>Товары</a></li>
+						<li><a>Услуги</a></li>
+						<li><a>Производители</a></li>
+					</ul>
+				</nav>
+			</div>			
+		</footer>
+		<script>
+			var demo = new Vue({
+			el: '#mainserch',
+			data: {
+				searchString: "",
+				articles: [
+					{
+						"title": "Hohner Bravo III 96 RED",
+						"descript": "Аккордеон, в стиле «Юнион Джек». Выпущен ограниченным тиражом.",
+						"image": "./img/product1.png",
+						"prise": "12 000 грн"
+					},
+					{
+						"title": "DBZ Halilfire",
+						"descript": "Электрогитара, в стиле «Юнион Джек». Выпущена ограниченным тиражом.",
+						"image": "./img/product2.png",
+						"prise": "12 000 грн"
+					},
+					{
+						"title": "Pearl Sparkle Burst",
+						"descript": "Малый барабан MCX Masters Custom 14x5.5 (клен).",
+						"image": "./img/product3.png",
+						"prise": "12 000 грн"
+					},
+					{
+						"title": "Yamaha P-105B",
+						"descript": "Компактное электропиано, оснащенное стерео- сэмплированными тембрами.",
+						"image": "./img/product4.png",
+						"prise": "12 000 грн"
+					},
+				]
+			},
+			computed: {
+				// Вычисленное свойство, которое содержит только те статьи, которые соответствуют searchString.
+				filteredArticles: function () {
+					var articles_array = this.articles,
+						searchString = this.searchString;
+
+					if(!searchString){
+						return articles_array;
+					}
+
+					searchString = searchString.trim().toLowerCase();
+
+					articles_array = articles_array.filter(function(item){
+						if(item.title.toLowerCase().indexOf(searchString) !== -1){
+							return item;
+						}
+					})
+					if(articles_array.length < 1){
+						articles_array = articles_array.filter(function(item){
+							if(item.descript.toLowerCase().indexOf(searchString) !== -1){
+								return item;
+							}
+						})
+					}
+					// Возвращает массив с отфильтрованными данными.
+					return articles_array;
+				}
+			}
+		});
+		
+			var demo = new Vue({
+			el: '#mainswwww',
+			data: {
+				// Настройка начального варианта разметки, возможные варианты – сетка (grid) и список (list).
+				layout: 'grid',
+
+				articles: [{
+					"title": "Доставка до дверей",
+					"descript": "Цикл, в том числе, выстраивает пласт. Как мы уже знаем, форшлаг регрессийно образует звукорядный хорус.",
+					"image": {
+						"large": "https://proglib.io/wp-content/uploads/2016/10/coding-time.jpg",
+						"small": "https://proglib.io/wp-content/uploads/2016/10/coding-time-324x160.jpg"
+					}
+				},
+				{
+					"title": "Установка и настройка",
+					"descript": "Цикл, в том числе, выстраивает пласт. Как мы уже знаем, форшлаг регрессийно образует звукорядный хорус.",
+					"image": {
+						"large": "https://proglib.io/wp-content/uploads/2017/01/0_b11a3_8ff3ef7b_XL.jpg",
+						"small": "https://proglib.io/wp-content/uploads/2017/01/0_b11a3_8ff3ef7b_XL-324x160.jpg"
+					}
+				},
+				{
+					"title": "Продажа в кредит",
+					"descript": "Цикл, в том числе, выстраивает пласт. Как мы уже знаем, форшлаг регрессийно образует звукорядный хорус.",	
+					"image": {
+						"large": "https://proglib.io/wp-content/uploads/2017/05/gamedev.png",
+						"small": "https://proglib.io/wp-content/uploads/2017/05/gamedev-324x160.png"
+					}
+				},
+				{
+					"title": "Ремонт и обслуживание",
+					"descript": "Цикл, в том числе, выстраивает пласт. Как мы уже знаем, форшлаг регрессийно образует звукорядный хорус.",
+					"image": {
+						"large": "https://proglib.io/wp-content/uploads/2016/12/1raWO3dhM4jMjf9VY-kZzNg.png",
+						"small": "https://proglib.io/wp-content/uploads/2016/12/1raWO3dhM4jMjf9VY-kZzNg-324x160.png"
+					}
+				},
+				{
+					"title": "Обмен без проблем",
+					"descript": "Цикл, в том числе, выстраивает пласт. Как мы уже знаем, форшлаг регрессийно образует звукорядный хорус.",
+					"image": {
+						"large": "https://proglib.io/wp-content/uploads/2017/01/ruqlwta5wqy.jpg",
+						"small": "https://proglib.io/wp-content/uploads/2017/01/ruqlwta5wqy-324x160.jpg"
+					}
+				},
+				{
+					"title": "Подарочные карты",
+					"descript": "Цикл, в том числе, выстраивает пласт. Как мы уже знаем, форшлаг регрессийно образует звукорядный хорус.",
+					"image": {
+						"large": "https://proglib.io/wp-content/uploads/2017/05/img-web-development-1.jpg",
+						"small": "https://proglib.io/wp-content/uploads/2017/05/img-web-development-1-324x160.jpg"
+					}
+				}]
+
+			}
+		});
+		
+		Vue.filter('currency', function (value) {
+			return '$' + value.toFixed(2);
+		});
+
+		var demo = new Vue({
+			el: '#price',
+			data: {
+				// Определяем свойства модели, представление будет проходить циклом
+				// по массиву услуг и генерировать элементы списка
+				// для каждого вложенного пункта.
+				services: [
+					{
+						name: 'Установка аппаратуры',
+						price: 500,
+						active:true
+					},{
+						name: 'Настройка инструментов',
+						price: 150,
+						active:false
+					},{
+						name: 'Ремонт инструментов',
+						price: 250,
+						active:false
+					},{
+						name: 'Обслуживание ',
+						price: 150,
+						active:false
+					}
+				]
+			},
+			methods: {
+				toggleActive: function(s){
+					s.active = !s.active;
+				},
+				total: function(){
+
+					var total = 0;
+
+					this.services.forEach(function(s){
+						if (s.active){
+							total+= s.price;
+						}
+					});
+
+				   return total;
+				}
+			}
+		});
+		</script>
+	</body>
+</html>
